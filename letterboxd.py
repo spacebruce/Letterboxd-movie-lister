@@ -42,8 +42,9 @@ for pageNum in range(2, pageCount + 1):
 # Find films on pages
 filmList = []
 
-print("Reading...")butt.
-for page in pageList:
+print("Reading...")
+for i in range(0, len(pageList)):
+	page = pageList[i]
 	if page.ready == False:
 		page.Load()
 	print(page.url)
