@@ -50,18 +50,16 @@ for i in range(0, len(pageList)):
 	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url)
 	posterContainer = page.soup.find(class_='poster-list')
 	posterList = posterContainer.find_all('img')
-	for film in posterList:
-		name = film.get('alt')
+	for filmString in posterList:
+		name = filmString.get('alt')
 		name.encode('utf8')
-		filmList.append(name)
+		filmList.append(Film(name))
 	time.sleep(1)	# wait a bit for next request
-
-print(filmList)
 
 # write out
 OutFile = input("Output file? ")
 
 f = open(OutFile,'w',encoding='utf-8')
 for film in filmList:
-	f.write(film + '\n')
+	f.write(film.name + '\n')
 f.close()
