@@ -47,7 +47,7 @@ for i in range(0, len(pageList)):
 	page = pageList[i]
 	if page.ready == False:
 		page.Load()
-	print(page.url)
+	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url)
 	posterContainer = page.soup.find(class_='poster-list')
 	posterList = posterContainer.find_all('img')
 	for film in posterList:
