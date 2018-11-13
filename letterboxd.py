@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# coding: ascii
 import requests
 import time
 from bs4 import BeautifulSoup
