@@ -63,17 +63,37 @@ if(ArgCount >= 4):
 else:
 	yearMode = getYes('Would you like to include years? Yes for true, otherwise for false ')
 
-startYear = 1870				# the first year EVER
-endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
-
 # Find needed pages
 pageList = []
 
-for i in range(startYear, endYear + 1):
-	pageYear = Page('https://letterboxd.com/' + UserName + '/films/year/' + str(i) + '/')
-	pageYear.year = i
-	pageList.append(pageYear)
+if(yearMode):
+	startYear = 1870				# the first year EVER
+	endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
 
+	for i in range(startYear, endYear + 1):
+		pageYear = Page('https://letterboxd.com/' + UserName + '/films/year/' + str(i) + '/')
+		pageYear.year = i
+		pageList.append(pageYear)
+else:
+	firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')	#open first page and read pagination section
+	firstPage.Load()
+	pageList.append(firstPage)
+	
+	pageDiscovery = firstPage.soup.find(class_='paginate-pages')	#find links in pagination section
+	pageDiscoveryList = pageDiscovery.find_all('a')
+	
+	#find last page number
+	pageCount = 0
+	for pageID in pageDiscoveryList:		
+		pageNumber = pageID.contents[0]
+	pageCount = max(pageCount, int(pageNumber))
+	
+	#add range to search list
+	for pageNum in range(2, pageCount + 1):
+		pageTemp = Page('https://letterboxd.com/' + UserName + '/films/page/' + str(pageNum) + '/')
+		pageList.append(pageTemp)
+
+#find films on pages
 filmList = []
 
 print('Reading...')
