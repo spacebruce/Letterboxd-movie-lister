@@ -66,7 +66,6 @@ for i in range(0, len(pageList)):
 	if page.ready == False:
 		time.sleep(1)	# wait a bit for request
 		page.Load()
-	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url)
 	
 	# read posters
 	posterContainer = page.soup.find(class_='poster-list')
