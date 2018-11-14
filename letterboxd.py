@@ -3,6 +3,7 @@
 import requests
 import time
 import sys
+import re
 from bs4 import BeautifulSoup
 
 class Page():
@@ -17,9 +18,10 @@ class Page():
 		self.ready = True
 
 class Film():
-	def __init__(self, name, rating):
+	def __init__(self, name, rating, year):
 		self.name = name
 		self.rating = rating
+		self.year = year
 	def Stars(self):
 		star = '★'
 		half = '½'
@@ -82,7 +84,9 @@ for i in range(0, len(pageList)):
 		ratingData = ratingEntry.get('data-owner-rating')
 		rating = int(float(ratingData))
 		
-		filmList.append(Film(name,rating))
+		year = 0
+		
+		filmList.append(Film(name, rating, year))
 
 # sort list alphabetically
 filmList = sorted(filmList, key=lambda film: film.name)
