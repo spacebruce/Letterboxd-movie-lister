@@ -1,6 +1,6 @@
 # Letterboxd movie lister
 
-Returns a list of watched movies logged to the specified Letterboxd.com profile and regurgigates the list into a file. Does not rely on nor care about the diary system.
+Returns a list of watched movies logged to the specified Letterboxd.com profile and regurgitates the list into a file. Does not rely on nor care about the diary system.
 
 Usage:
 
