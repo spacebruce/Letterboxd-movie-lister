@@ -45,14 +45,24 @@ userName = ""
 outPath = ""
 yearMode = False
 
+# Argument handling
+#		0				1		2		3
+#python letterboxd.py username outpath year?
 ArgCount = len(sys.argv)
-if(ArgCount < 2):
-        UserName = input('Please enter a Username : ')
+
+if(ArgCount >= 2):
+	userName = str(sys.argv[1])
 else:
-        UserName = str(sys.argv[1])
-        if(ArgCount == 3):
-                OutPath = sys.argv[2]
-				
+	userName = input('Please enter a Username : ')
+if(ArgCount >= 3):
+	outPath = sys.argv[2]
+else:
+	outPath = input('Please enter an output file name : ')
+if(ArgCount >= 4):
+	yearMode = (sys.argv[3] == 'year')
+else:
+	yearMode = getYes('Would you like to include years? Yes for true, otherwise for false ')
+
 startYear = 1870				# the first year EVER
 endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
 
