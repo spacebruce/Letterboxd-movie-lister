@@ -38,9 +38,7 @@ class Film():
 def getYes(prompt):
 	try:
 	   return {"yes":True,"no":False}[input(prompt).lower()]
-	except:
-		return False
-		   
+# Parameters
 userName = ""
 outPath = ""
 yearMode = False
@@ -60,8 +58,6 @@ else:
 	outPath = input('Please enter an output file name : ')
 if(ArgCount >= 4):
 	yearMode = (sys.argv[3] == 'year')
-else:
-	yearMode = getYes('Would you like to include years? Yes for true, otherwise for false ')
 
 # Find needed pages
 pageList = []
@@ -129,6 +125,7 @@ filmList = sorted(filmList, key=lambda film: film.name)
 # write out
 f = open(outPath,'w',encoding='utf-8')
 for film in filmList:
+	yearString = ' '
 	if(yearMode):
 		yearString = ' (' + str(film.year) + ') '
 	
