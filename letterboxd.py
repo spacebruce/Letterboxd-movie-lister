@@ -71,11 +71,11 @@ if(yearMode):
 	endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
 
 	for i in range(startYear, endYear + 1):
-		pageYear = Page('https://letterboxd.com/' + UserName + '/films/year/' + str(i) + '/')
+		pageYear = Page('https://letterboxd.com/' + userName + '/films/year/' + str(i) + '/')
 		pageYear.year = i
 		pageList.append(pageYear)
 else:
-	firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')	#open first page and read pagination section
+	firstPage = Page('https://letterboxd.com/' + userName + '/films/page/1/')	#open first page and read pagination section
 	firstPage.Load()
 	pageList.append(firstPage)
 	
@@ -90,7 +90,7 @@ else:
 	
 	#add range to search list
 	for pageNum in range(2, pageCount + 1):
-		pageTemp = Page('https://letterboxd.com/' + UserName + '/films/page/' + str(pageNum) + '/')
+		pageTemp = Page('https://letterboxd.com/' + userName + '/films/page/' + str(pageNum) + '/')
 		pageList.append(pageTemp)
 
 #find films on pages
