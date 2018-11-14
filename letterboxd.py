@@ -38,6 +38,7 @@ OutPath = ""
 ArgCount = len(sys.argv)
 if(ArgCount < 2):
         UserName = input("Please enter a Username : ")
+        UserName = input('Please enter a Username : ')
 else:
         UserName = str(sys.argv[1])
         if(ArgCount == 3):
@@ -63,7 +64,7 @@ for pageNum in range(2, pageCount + 1):
 # Find films on pages
 filmList = []
 
-print("Reading...")
+print('Reading...')
 for i in range(0, len(pageList)):
 	page = pageList[i]
 	if page.ready == False:
@@ -88,7 +89,7 @@ for i in range(0, len(pageList)):
 filmList = sorted(filmList, key=lambda film: film.name)
 
 # write out
-if(OutPath == ""):
+if(OutPath == ''):
         OutPath = input('Enter output file name : ')
 
 f = open(OutPath,'w',encoding='utf-8')
