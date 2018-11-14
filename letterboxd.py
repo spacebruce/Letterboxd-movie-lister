@@ -58,18 +58,6 @@ for i in range(startYear, endYear + 1):
 	pageYear.year = i
 	pageList.append(pageYear)
 
-for pageID in pageDiscoveryList:
-	pageNumber = pageID.contents[0]
-	pageCount = max(pageCount, int(pageNumber))
-
-# Ready every page
-pageList = [ firstPage ]
-
-for pageNum in range(2, pageCount + 1):
-	pageTemp = Page('https://letterboxd.com/' + UserName + '/films/page/' + str(pageNum) + '/')
-	pageList.append(pageTemp)
-
-# Find films on pages
 filmList = []
 
 print('Reading...')
