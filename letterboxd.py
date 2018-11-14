@@ -19,7 +19,6 @@ class Film():
 	def __init__(self, name, rating):
 		self.name = name
 		self.rating = rating
-
 	def Stars(self):
 		star = '★'
 		half = '½'
@@ -30,6 +29,7 @@ class Film():
 		if(ratinghalf * 2 != self.rating):
 			returnstring += half
 		return returnstring
+		
 		
 UserName = input("Username? ")
 
@@ -75,6 +75,9 @@ for i in range(0, len(pageList)):
 		
 		filmList.append(Film(name,rating))
 	time.sleep(1)	# wait a bit for next request
+
+# sort list alphabetically
+filmList = sorted(filmList, key=lambda film: film.name)
 
 # write out
 OutFile = input('Output file? ')
