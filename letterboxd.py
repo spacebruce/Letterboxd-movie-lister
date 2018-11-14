@@ -87,6 +87,7 @@ for i in range(0, len(pageList)):
 			
 			filmList.append(Film(name, rating, year))
 
+	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url + " (" + str(len(filmList)) + " films discovered)")
 # sort list alphabetically
 filmList = sorted(filmList, key=lambda film: film.name)
 
