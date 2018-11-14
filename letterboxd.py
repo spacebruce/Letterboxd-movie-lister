@@ -47,6 +47,7 @@ else:
 firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')
 firstPage.Load()
 
+# Find page count
 pageCount = 0
 
 pageDiscovery = firstPage.soup.find(class_='paginate-pages')
@@ -54,7 +55,7 @@ pageDiscoveryList = pageDiscovery.find_all('a')
 
 for pageID in pageDiscoveryList:
 	pageNumber = pageID.contents[0]
-	pageCount = max(pageCount, int(float(pageNumber)))
+	pageCount = max(pageCount, int(pageNumber))
 
 # Ready every page
 pageList = [ firstPage ]
@@ -86,7 +87,7 @@ for i in range(0, len(pageList)):
 		
 		ratingEntry = ratingList[film]
 		ratingData = ratingEntry.get('data-owner-rating')
-		rating = int(float(ratingData))
+		rating = int(ratingData)
 		
 		year = 0
 		#yearEntry = ratingEntry.find_all('div')
