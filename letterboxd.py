@@ -35,9 +35,15 @@ class Film():
 			returnstring += half
 		return returnstring
 		
-
-UserName = ""
-OutPath = ""
+def getYes(prompt):
+	try:
+	   return {"yes":True,"no":False}[input(prompt).lower()]
+	except:
+		return False
+		   
+userName = ""
+outPath = ""
+yearMode = False
 
 ArgCount = len(sys.argv)
 if(ArgCount < 2):
