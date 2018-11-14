@@ -97,8 +97,10 @@ if(OutPath == ''):
 
 f = open(OutPath,'w',encoding='utf-8')
 for film in filmList:
+	yearString = ' (' + str(film.year) + ') '
+	
 	if(film.rating != 0):
-		f.write(film.name + " " + str(film.Stars()) + '\n')
+		f.write(film.name + yearString + str(film.Stars()) + '\n')
 	else:
-		f.write(film.name + '\n')
+		f.write(film.name + yearString + '\n')
 f.close()
