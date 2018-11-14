@@ -35,9 +35,6 @@ class Film():
 			returnstring += half
 		return returnstring
 		
-def getYes(prompt):
-	try:
-	   return {"yes":True,"no":False}[input(prompt).lower()]
 # Parameters
 userName = ""
 outPath = ""
