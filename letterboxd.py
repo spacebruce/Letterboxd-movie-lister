@@ -127,9 +127,10 @@ for i in range(0, len(pageList)):
 filmList = sorted(filmList, key=lambda film: film.name)
 
 # write out
-f = open(OutPath,'w',encoding='utf-8')
+f = open(outPath,'w',encoding='utf-8')
 for film in filmList:
-	yearString = ' (' + str(film.year) + ') '
+	if(yearMode):
+		yearString = ' (' + str(film.year) + ') '
 	
 	if(film.rating != 0):
 		f.write(film.name + yearString + str(film.Stars()) + '\n')
