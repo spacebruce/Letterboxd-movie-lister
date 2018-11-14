@@ -63,12 +63,14 @@ if(yearMode):
 	startYear = 1870				# the first year EVER
 	endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
 
+	# Get year base pages
 	for i in range(startYear, endYear + 1):
 		pageYear = Page('https://letterboxd.com/' + userName + '/films/year/' + str(i) + '/')
 		pageYear.year = i
 		pageList.append(pageYear)
 	
 	# if year has more than 1 page...
+	pageListExtra = []
 	for page in pageList:
 		if(page.ready == False):
 			time.sleep(1)
@@ -82,8 +84,12 @@ if(yearMode):
 				pageNumber = pageID.contents[0]
 			pageCount = max(pageCount, int(pageNumber))
 			for pageNum in range(2, pageCount + 1):
-				pageTemp = Page('https://letterboxd.com/' + userName + 'films/year/' + str(page.year) + '/page/' + str(pageNum))
-				pageList.append(pageTemp)
+				pageTemp = Page('https://letterboxd.com/' + userName + '/films/year/' + str(page.year) + '/page/' + str(pageNum)+'/')
+				pageListExtra.append(pageTemp)
+				
+	# subpages
+	for page in pageListExtra:
+		pageList.append(page)
 else:
 	firstPage = Page('https://letterboxd.com/' + userName + '/films/page/1/')	# Open first page and read pagination section
 	firstPage.Load()
