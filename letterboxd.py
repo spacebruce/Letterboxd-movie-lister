@@ -11,7 +11,7 @@ class Page():
 		self.ready = False
 	def Load(self):
 		self.page = requests.get(self.url)
-		self.soup = BeautifulSoup(self.page.text,"html.parser")
+		self.soup = BeautifulSoup(self.page.text,'html.parser')
 		self.ready = True
 
 class Film():
@@ -65,7 +65,7 @@ for i in range(0, len(pageList)):
 	time.sleep(1)	# wait a bit for next request
 
 # write out
-OutFile = input("Output file? ")
+OutFile = input('Output file? ')
 
 f = open(OutFile,'w',encoding='utf-8')
 for film in filmList:
