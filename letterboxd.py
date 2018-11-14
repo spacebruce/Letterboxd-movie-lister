@@ -67,6 +67,23 @@ if(yearMode):
 		pageYear = Page('https://letterboxd.com/' + userName + '/films/year/' + str(i) + '/')
 		pageYear.year = i
 		pageList.append(pageYear)
+	
+	# if year has more than 1 page...
+	for page in pageList:
+		if(page.ready == False):
+			time.sleep(1)
+			page.Load()
+			print('crawling ' + str(page.url))
+		pageDiscovery = page.soup.find(class_='paginate-pages')	# Find links in pagination section
+		if pageDiscovery:
+			pageDiscoveryList = pageDiscovery.find_all('a')
+			pageCount = 1
+			for pageID in pageDiscoveryList:		
+				pageNumber = pageID.contents[0]
+			pageCount = max(pageCount, int(pageNumber))
+			for pageNum in range(2, pageCount + 1):
+				pageTemp = Page('https://letterboxd.com/' + userName + 'films/year/' + str(page.year) + '/page/' + str(pageNum))
+				pageList.append(pageTemp)
 else:
 	firstPage = Page('https://letterboxd.com/' + userName + '/films/page/1/')	# Open first page and read pagination section
 	firstPage.Load()
