@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import time
+import sys
 from bs4 import BeautifulSoup
 
 class Page():
@@ -30,9 +31,17 @@ class Film():
 			returnstring += half
 		return returnstring
 		
-		
-UserName = input("Username? ")
 
+UserName = ""
+OutPath = ""
+
+ArgCount = len(sys.argv)
+if(ArgCount < 2):
+        UserName = input("Please enter a Username : ")
+else:
+        UserName = str(sys.argv[1])
+        if(ArgCount == 3):
+                OutPath = sys.argv[2]
 firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')
 firstPage.Load()
 
@@ -46,7 +55,6 @@ for pageID in pageDiscoveryList:
 	pageCount = max(pageCount, int(float(pageNumber)))
 
 # Ready every page
-print("Loading")
 pageList = [ firstPage ]
 for pageNum in range(2, pageCount + 1):
 	pageTemp = Page('https://letterboxd.com/' + UserName + '/films/page/' + str(pageNum) + '/')
@@ -80,9 +88,10 @@ for i in range(0, len(pageList)):
 filmList = sorted(filmList, key=lambda film: film.name)
 
 # write out
-OutFile = input('Output file? ')
+if(OutPath == ""):
+        OutPath = input('Enter output file name : ')
 
-f = open(OutFile,'w',encoding='utf-8')
+f = open(OutPath,'w',encoding='utf-8')
 for film in filmList:
 	if(film.rating != 0):
 		f.write(film.name + "	" + str(film.Stars()) + '\n')
