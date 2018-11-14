@@ -85,6 +85,9 @@ for i in range(0, len(pageList)):
 		rating = int(float(ratingData))
 		
 		year = 0
+		#yearEntry = ratingEntry.find_all('div')
+		#print(yearEntry[0])
+		#yearData = ratingEntry.get('data-film-release-year')
 		
 		filmList.append(Film(name, rating, year))
 
