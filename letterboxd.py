@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import time
+from datetime import date
 import sys
 import re
 from bs4 import BeautifulSoup
@@ -11,6 +12,7 @@ class Page():
 		self.url = url
 		self.page = None
 		self.soup = None
+		self.year = 0
 		self.ready = False
 	def Load(self):
 		self.page = requests.get(self.url)
@@ -46,6 +48,8 @@ else:
                 OutPath = sys.argv[2]
 firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')
 firstPage.Load()
+startYear = 1870				# the first year EVER
+endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
 
 # Find page count
 pageCount = 0
