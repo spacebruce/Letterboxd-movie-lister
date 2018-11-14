@@ -47,17 +47,18 @@ else:
 firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')
 firstPage.Load()
 
+pageCount = 0
+
 pageDiscovery = firstPage.soup.find(class_='paginate-pages')
 pageDiscoveryList = pageDiscovery.find_all('a')
 
-# Find page count
-pageCount = 0
 for pageID in pageDiscoveryList:
 	pageNumber = pageID.contents[0]
 	pageCount = max(pageCount, int(float(pageNumber)))
 
 # Ready every page
 pageList = [ firstPage ]
+
 for pageNum in range(2, pageCount + 1):
 	pageTemp = Page('https://letterboxd.com/' + UserName + '/films/page/' + str(pageNum) + '/')
 	pageList.append(pageTemp)
@@ -69,12 +70,15 @@ print('Reading...')
 for i in range(0, len(pageList)):
 	page = pageList[i]
 	if page.ready == False:
-                time.sleep(1)	# wait a bit for request
-                page.Load()
+		time.sleep(1)	# wait a bit for request
+		page.Load()
 	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url)
+	
+	# read posters
 	posterContainer = page.soup.find(class_='poster-list')
-	ratingList = posterContainer.find_all('li')
-	nameList = posterContainer.find_all('img')
+	ratingList = posterContainer.find_all('li')		#	<li class="poster-container" data-owner-rating="0">
+	nameList = posterContainer.find_all('img')		#	<img alt="John Wick: Chapter 2" class="image" height="105" src="https://s1.ltrbxd.com/static/img/empty-poster-70.8461d4ea.png" width="70"/>
+	
 	for film in range(0, len(nameList)):
 		nameEntry = nameList[film]
 		name = nameEntry.get('alt')
