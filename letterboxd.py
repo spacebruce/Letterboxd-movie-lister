@@ -127,9 +127,6 @@ for i in range(0, len(pageList)):
 filmList = sorted(filmList, key=lambda film: film.name)
 
 # write out
-if(OutPath == ''):
-        OutPath = input('Enter output file name : ')
-
 f = open(OutPath,'w',encoding='utf-8')
 for film in filmList:
 	yearString = ' (' + str(film.year) + ') '
