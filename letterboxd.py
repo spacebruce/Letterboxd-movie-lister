@@ -37,7 +37,6 @@ OutPath = ""
 
 ArgCount = len(sys.argv)
 if(ArgCount < 2):
-        UserName = input("Please enter a Username : ")
         UserName = input('Please enter a Username : ')
 else:
         UserName = str(sys.argv[1])
