@@ -19,6 +19,17 @@ class Film():
 		self.name = name
 		self.rating = rating
 
+	def Stars(self):
+		star = '★'
+		half = '½'
+		ratinghalf = int(self.rating / 2)
+		returnstring = ''
+		for i in range(0, ratinghalf):
+			returnstring += star
+		if(ratinghalf * 2 != self.rating):
+			returnstring += half
+		return returnstring
+		
 UserName = input("Username? ")
 
 firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')
@@ -70,7 +81,6 @@ OutFile = input('Output file? ')
 f = open(OutFile,'w',encoding='utf-8')
 for film in filmList:
 	if(film.rating != 0):
-		f.write(film.name + "	" + str(film.rating) + '\n')
 	else:
 		f.write(film.name + '\n')
 f.close()
