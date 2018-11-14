@@ -46,16 +46,17 @@ else:
         UserName = str(sys.argv[1])
         if(ArgCount == 3):
                 OutPath = sys.argv[2]
-firstPage = Page('https://letterboxd.com/' + UserName + '/films/page/1/')
-firstPage.Load()
+				
 startYear = 1870				# the first year EVER
 endYear = date.today().year + 1	# It's conceivable user could see a prerelease/early screening for a film from next year)
 
-# Find page count
-pageCount = 0
+# Find needed pages
+pageList = []
 
-pageDiscovery = firstPage.soup.find(class_='paginate-pages')
-pageDiscoveryList = pageDiscovery.find_all('a')
+for i in range(startYear, endYear + 1):
+	pageYear = Page('https://letterboxd.com/' + UserName + '/films/year/' + str(i) + '/')
+	pageYear.year = i
+	pageList.append(pageYear)
 
 for pageID in pageDiscoveryList:
 	pageNumber = pageID.contents[0]
