@@ -8,7 +8,7 @@ Output format sample:
 
 	...
 	Man of Steel
-	Mandy	★★★★★
+	Mandy ★★★★★
 	Maniac Cop ★★
 	Marooned ★½
 	...
