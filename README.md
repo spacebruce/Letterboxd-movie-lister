@@ -8,7 +8,7 @@ Usage:
 	
 	python letterboxd.py username outfile year
 
-adding the argument "year" to the end of the call makes this retrieve the year a film was released. This mode is much slower as it scans every release year page on the users film list. This isn't the way I would have liked to add this feature, but alas, letterboxd doesn't supply a public API.
+adding the argument "year" to the end of the call makes this retrieve the year a film was released and append to the output. This mode is much slower as it scans every release year page on the users film list. This isn't the way I would have liked to add this feature, but alas, letterboxd doesn't supply a public API.
 	
 Output format sample:
 
