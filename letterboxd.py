@@ -67,7 +67,8 @@ print("Reading...")
 for i in range(0, len(pageList)):
 	page = pageList[i]
 	if page.ready == False:
-		page.Load()
+                time.sleep(1)	# wait a bit for request
+                page.Load()
 	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url)
 	posterContainer = page.soup.find(class_='poster-list')
 	ratingList = posterContainer.find_all('li')
@@ -82,7 +83,6 @@ for i in range(0, len(pageList)):
 		rating = int(float(ratingData))
 		
 		filmList.append(Film(name,rating))
-	time.sleep(1)	# wait a bit for next request
 
 # sort list alphabetically
 filmList = sorted(filmList, key=lambda film: film.name)
