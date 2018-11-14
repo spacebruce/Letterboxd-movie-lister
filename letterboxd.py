@@ -70,24 +70,22 @@ for i in range(0, len(pageList)):
 	
 	# read posters
 	posterContainer = page.soup.find(class_='poster-list')
-	ratingList = posterContainer.find_all('li')		#	<li class="poster-container" data-owner-rating="0">
-	nameList = posterContainer.find_all('img')		#	<img alt="John Wick: Chapter 2" class="image" height="105" src="https://s1.ltrbxd.com/static/img/empty-poster-70.8461d4ea.png" width="70"/>
-	
-	for film in range(0, len(nameList)):
-		nameEntry = nameList[film]
-		name = nameEntry.get('alt')
-		name.encode('utf8')
+	if posterContainer:
+		ratingList = posterContainer.find_all('li')		#	<li class="poster-container" data-owner-rating="0">
+		nameList = posterContainer.find_all('img')		#	<img alt="John Wick: Chapter 2" class="image" height="105" src="https://s1.ltrbxd.com/static/img/empty-poster-70.8461d4ea.png" width="70"/>
 		
-		ratingEntry = ratingList[film]
-		ratingData = ratingEntry.get('data-owner-rating')
-		rating = int(ratingData)
-		
-		year = 0
-		#yearEntry = ratingEntry.find_all('div')
-		#print(yearEntry[0])
-		#yearData = ratingEntry.get('data-film-release-year')
-		
-		filmList.append(Film(name, rating, year))
+		for film in range(0, len(nameList)):
+			nameEntry = nameList[film]
+			name = nameEntry.get('alt')
+			name.encode('utf8')
+			
+			ratingEntry = ratingList[film]
+			ratingData = ratingEntry.get('data-owner-rating')
+			rating = int(ratingData)
+			
+			year = page.year;
+			
+			filmList.append(Film(name, rating, year))
 
 # sort list alphabetically
 filmList = sorted(filmList, key=lambda film: film.name)
