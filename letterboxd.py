@@ -15,8 +15,9 @@ class Page():
 		self.ready = True
 
 class Film():
-	def __init__(self, name):
+	def __init__(self, name, rating):
 		self.name = name
+		self.rating = rating
 
 UserName = input("Username? ")
 
@@ -49,11 +50,18 @@ for i in range(0, len(pageList)):
 		page.Load()
 	print(str(i + 1) + "/" + str(len(pageList)) + " " + page.url)
 	posterContainer = page.soup.find(class_='poster-list')
-	posterList = posterContainer.find_all('img')
-	for filmString in posterList:
-		name = filmString.get('alt')
+	ratingList = posterContainer.find_all('li')
+	nameList = posterContainer.find_all('img')
+	for film in range(0, len(nameList)):
+		nameEntry = nameList[film]
+		name = nameEntry.get('alt')
 		name.encode('utf8')
-		filmList.append(Film(name))
+		
+		ratingEntry = ratingList[film]
+		ratingData = ratingEntry.get('data-owner-rating')
+		rating = int(float(ratingData))
+		
+		filmList.append(Film(name,rating))
 	time.sleep(1)	# wait a bit for next request
 
 # write out
