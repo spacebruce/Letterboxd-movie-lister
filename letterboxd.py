@@ -85,6 +85,7 @@ if(yearMode):
 			pageCount = max(pageCount, int(pageNumber))
 			for pageNum in range(2, pageCount + 1):
 				pageTemp = Page('https://letterboxd.com/' + userName + '/films/year/' + str(page.year) + '/page/' + str(pageNum)+'/')
+				pageTemp.year = page.year
 				pageListExtra.append(pageTemp)
 				
 	# subpages
