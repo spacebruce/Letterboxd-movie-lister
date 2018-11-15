@@ -41,7 +41,7 @@ outPath = ''
 yearMode = False
 
 # Argument handling
-#		 0			   1		2		3
+#	 0		1	2	3
 # python letterboxd.py username outpath year?
 ArgCount = len(sys.argv)
 
